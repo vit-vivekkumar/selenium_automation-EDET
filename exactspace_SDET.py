@@ -32,9 +32,8 @@ if __name__ == "__main__":
 	options.add_argument("--proxy-server={0}".format(proxy.proxy))
 
 	# Start the chrome webdriver 
-	service = Service("/usr/bin/chromedriver")
-	driver = webdriver.Chrome(service=service)
 
+	driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=options)
 	# Create a new HAR file of the following domain
 	# using the proxy.
 	proxy.new_har("exactspace.co/")
@@ -46,15 +45,14 @@ if __name__ == "__main__":
 	time.sleep(10)
 
 	# Write it to a HAR file.
-	with open("exactspace.har", "w", encoding="utf-8") as f:
+	with open("network_log1.har", "w", encoding="utf-8") as f:
 		f.write(json.dumps(proxy.har))
 
 	print("Quitting Selenium WebDriver")
 	driver.quit()
 
 	# Read HAR File and parse it using JSON
-	# to find the urls containing images.
-	har_file_path = "exactspace.har"
+	har_file_path = "network_log1.har"
 	with open(har_file_path, "r", encoding="utf-8") as f:
 		logs = json.loads(f.read())
 
