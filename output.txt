@@ -1,0 +1,5 @@
+output :
+a. Total status code :  0
+b. Total count for 2XX status code : 0
+c. Total count for 4XX status code : 0
+d. Total count for 5XX status code : 0
